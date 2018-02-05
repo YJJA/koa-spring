@@ -1,5 +1,5 @@
 
-export function service(serviceName) {
+export function service (serviceName) {
   return function (target, key, descriptor) {
     if (!target._services) {
       Object.defineProperty(target, '_services', {
@@ -14,10 +14,10 @@ export function service(serviceName) {
     return {
       enumerable: true,
       configurable: true,
-      get() {
+      get () {
         return this[key]
       },
-      set(value) {
+      set (value) {
         Object.defineProperty(this, key, {
           enumerable: true,
           configurable: true,

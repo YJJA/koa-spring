@@ -1,7 +1,7 @@
 const Redis = require('ioredis')
 
 class RedisStore {
-  constructor(config = {}) {
+  constructor (config = {}) {
     if (Array.isArray(config.nodes)) {
       this.client = new Redis.Cluster(config.nodes, config.options)
     } else {
@@ -11,7 +11,7 @@ class RedisStore {
     this.unserialize = JSON.parse
   }
 
-  async get(sid) {
+  async get (sid) {
     const data = await this.client.get(sid)
     if (!data) {
       return null
@@ -21,7 +21,7 @@ class RedisStore {
     } catch (err) {}
   }
 
-  async set(sid, sess, ttl) {
+  async set (sid, sess, ttl) {
     if (typeof ttl === 'number') {
       ttl = Math.ceil(ttl / 1000)
     }
@@ -33,15 +33,15 @@ class RedisStore {
     }
   }
 
-  async destroy(sid) {
+  async destroy (sid) {
     await this.client.del(sid)
   }
 
-  async quit() {
+  async quit () {
     await this.client.quit()
   }
 
-  async end() {
+  async end () {
     await this.client.quit()
   }
 }

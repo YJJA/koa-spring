@@ -1,6 +1,6 @@
 
 export class UsersService {
-  find() {
+  find () {
     return 'this is find'
   }
 }

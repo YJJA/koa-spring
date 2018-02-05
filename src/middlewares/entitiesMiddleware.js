@@ -1,4 +1,4 @@
-function validateEntity(entity, data) {
+function validateEntity (entity, data) {
   return new Promise((resolve, reject) => {
     try {
       entity.set(data)
@@ -9,7 +9,7 @@ function validateEntity(entity, data) {
   })
 }
 
-export function entitiesMiddleware(entity) {
+export function entitiesMiddleware (entity) {
   return async (ctx, next) => {
     if (entity) {
       ctx.entity = await validateEntity(entity, {

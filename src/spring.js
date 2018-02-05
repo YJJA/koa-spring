@@ -1,9 +1,8 @@
 import koaRouter from 'koa-router'
-import {parseController} from './controller'
 import {entitiesMiddleware} from './middlewares/entitiesMiddleware'
 
 // spring
-export function spring(app, {controllers = {}, services = {}, entities = {}}) {
+export function spring (app, {controllers = {}, services = {}, entities = {}}) {
   const router = koaRouter()
   const servicesMap = Object.keys(services).reduce((result, key) => {
     const Service = services[key]

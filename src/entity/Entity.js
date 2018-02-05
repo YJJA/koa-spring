@@ -1,5 +1,5 @@
 export class Entity {
-  set(props) {
+  set (props) {
     Object.keys(props).forEach(key => {
       if (this._entity[key]) {
         this[key] = props[key]
@@ -7,14 +7,14 @@ export class Entity {
     })
   }
 
-  get() {
+  get () {
     return Object.keys(this._entity).reduce((result, key) => {
       result[key] = this[key]
       return result
     }, {})
   }
 
-  toJSON() {
+  toJSON () {
     return this.get()
   }
 }

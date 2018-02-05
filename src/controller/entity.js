@@ -1,5 +1,5 @@
-export function entity(entityName) {
-  return function(target, key, descriptor) {
+export function entity (entityName) {
+  return function (target, key, descriptor) {
     if (!target._entities) {
       Object.defineProperty(target, '_entities', {
         enumerable: false,

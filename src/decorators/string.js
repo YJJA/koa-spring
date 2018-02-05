@@ -1,4 +1,4 @@
-export function string(target, key, descriptor) {
+export function string (target, key, descriptor) {
   if (!target._entity) {
     Object.defineProperty(target, '_entity', {
       enumerable: false,
@@ -16,10 +16,10 @@ export function string(target, key, descriptor) {
   return {
     enumerable: true,
     configurable: true,
-    get() {
+    get () {
       return this._entity[key].value
     },
-    set(value) {
+    set (value) {
       if (typeof value === 'string') {
         this._entity[key] = {
           ...this._entity[key],

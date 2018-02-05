@@ -1,7 +1,7 @@
 const http = require('http')
 
 // createHttp
-module.exports = function createServer(port, requestHandler) {
+module.exports = function createServer (port, requestHandler) {
   let server = http.createServer()
   server.on('request', requestHandler)
   server.on('error', onError)
@@ -9,7 +9,7 @@ module.exports = function createServer(port, requestHandler) {
   server.listen(process.env.PORT || port)
 
   // onError
-  function onError(error) {
+  function onError (error) {
     if (error.syscall !== 'listen') {
       throw error
     }
@@ -32,7 +32,7 @@ module.exports = function createServer(port, requestHandler) {
   }
 
   // onListening
-  function onListening() {
+  function onListening () {
     let addr = server.address()
     let bind = typeof addr === 'string'
       ? 'pipe ' + addr

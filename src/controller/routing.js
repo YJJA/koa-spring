@@ -1,7 +1,7 @@
 import {Methods} from './Methods'
 
 // routingClass
-function routingClass(target, rootPath) {
+function routingClass (target, rootPath) {
   const _routes = target.prototype._routes
   if (typeof _routes === 'object') {
     target.prototype._routes = Object.keys(_routes).reduce((result, key) => {
@@ -15,9 +15,9 @@ function routingClass(target, rootPath) {
 }
 
 // routingMethod
-function routingMethod(target, property, descriptor, path, method) {
+function routingMethod (target, property, descriptor, path, method) {
   if (descriptor && typeof descriptor.value !== 'function') {
-    throw new SyntaxError(`@routing can only be used on functions, not: ${descriptor.value}`);
+    throw new SyntaxError(`@routing can only be used on functions, not: ${descriptor.value}`)
   }
 
   const _routes = target._routes || {}
@@ -28,8 +28,8 @@ function routingMethod(target, property, descriptor, path, method) {
 }
 
 // routing
-export function routing(path, method = Methods.GET) {
-  return function(target, property, descriptor) {
+export function routing (path, method = Methods.GET) {
+  return function (target, property, descriptor) {
     if (typeof property === 'string') {
       return routingMethod(target, property, descriptor, path, method)
     } else {
