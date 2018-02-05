@@ -1,3 +1,4 @@
+import {defaultSetter, defaultGetter} from '../utils'
 
 export function service (serviceName) {
   return function (target, key, descriptor) {
@@ -11,20 +12,12 @@ export function service (serviceName) {
     }
 
     target._services[key] = serviceName
+
     return {
       enumerable: true,
       configurable: true,
-      get () {
-        return this[key]
-      },
-      set (value) {
-        Object.defineProperty(this, key, {
-          enumerable: true,
-          configurable: true,
-          writable: true,
-          value
-        })
-      }
+      get: defaultGetter(key),
+      set: defaultSetter(key)
     }
   }
 }

@@ -9,8 +9,8 @@ export class UsersController {
   @routing('')
   async find (ctx, next) {
     const entity = ctx.entity
-    // const result = this.Users.find()
-    ctx.body = entity
+    const result = this.Users.find(entity)
+    ctx.body = result
   }
 
   @entity('UserEntity')

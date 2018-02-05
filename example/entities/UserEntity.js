@@ -1,9 +1,16 @@
-import {Entity, string} from '../../src'
+import {Entity, string, number, required} from '../../src'
 
 export class UserEntity extends Entity {
-  @string
+  @string()
   username
 
-  @string
+  @required('types 为必填项')
+  @string()
   password
+
+  @number()
+  type
+
+  @number()
+  types
 }
