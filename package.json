@@ -2,6 +2,9 @@
   "name": "koa-spring",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "start": "nodemon --exec babel-node -- ./example/index.js",
     "build:src": "babel src --out-dir dist/lib",
@@ -24,8 +27,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.14.12"
+    "eslint-plugin-standard": "^3.0.1"
   },
   "dependencies": {
     "ioredis": "^3.2.2",

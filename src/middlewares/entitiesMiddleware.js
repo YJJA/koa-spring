@@ -12,10 +12,10 @@ function validateEntity (entity, data) {
 export function entitiesMiddleware (entity) {
   return async (ctx, next) => {
     if (entity) {
-      ctx.entity = await validateEntity(entity, {
+      ctx.entity = {
         username: 'YJJA',
         password: '1212'
-      })
+      }
     }
     await next()
   }
