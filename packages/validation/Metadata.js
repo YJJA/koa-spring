@@ -21,10 +21,10 @@ export default class Metadata {
     this.target = argv.target
     this.propertyName = argv.propertyName
     this.type = argv.type
-    this.constraints = argv.constraints
+    this.constraints = argv.constraints || []
     if (argv.options) {
       this.message = argv.options.message
-      this.groups = argv.options.groups
+      this.groups = argv.options.groups || []
     }
   }
 }

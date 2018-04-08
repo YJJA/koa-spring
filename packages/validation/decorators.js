@@ -1,14 +1,14 @@
 import {setDecoratorContainer} from './container'
-// import {defaultSetter, defaultGetter} from './utils'
+import {defaultSetter, defaultGetter} from './utils'
 
-// function createDefaultDescriptor (key) {
-//   return {
-//     enumerable: true,
-//     configurable: true,
-//     get: defaultGetter(key),
-//     set: defaultSetter(key)
-//   }
-// }
+function createDefaultDescriptor (key) {
+  return {
+    enumerable: true,
+    configurable: true,
+    get: defaultGetter(key),
+    set: defaultSetter(key)
+  }
+}
 
 // Type
 export function DataType (dataType) {
@@ -19,6 +19,7 @@ export function DataType (dataType) {
       type: 'DataType',
       constraints: [dataType]
     })
+    return createDefaultDescriptor(propertyName)
   }
 }
 
@@ -31,5 +32,6 @@ export function NotEmpty (options) {
       type: 'NotEmpty',
       options
     })
+    return createDefaultDescriptor(propertyName)
   }
 }

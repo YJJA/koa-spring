@@ -1,23 +1,23 @@
-import Reflect from 'reflect-metadata'
+import reflect from './reflect'
 import Metadata from './Metadata'
 
 const metadataKey = Symbol('validation')
 
 export function setDecoratorContainer (argv) {
   let Metadatas = null
-  if (Reflect.hasMetadata(metadataKey, argv.target)) {
-    Metadatas = Reflect.getMetadata(metadataKey, argv.target)
+  if (reflect.hasMetadata(metadataKey, argv.target)) {
+    Metadatas = reflect.getMetadata(metadataKey, argv.target)
   } else {
     Metadatas = []
   }
 
   Metadatas.push(new Metadata(argv))
-  Reflect.setMetadata(metadataKey, Metadatas, argv.target)
+  reflect.setMetadata(metadataKey, Metadatas, argv.target)
 }
 
 export function getDecoratorContainer (target) {
-  if (Reflect.hasMetadata(metadataKey, target)) {
-    return Reflect.getMetadata(metadataKey, target)
+  if (reflect.hasMetadata(metadataKey, target)) {
+    return reflect.getMetadata(metadataKey, target)
   } else {
     return []
   }

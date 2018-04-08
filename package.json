@@ -7,12 +7,12 @@
   ],
   "scripts": {
     "start": "nodemon --exec babel-node -- ./example/index.js",
-    "build:src": "babel src --out-dir dist/lib",
-    "build:example": "babel example --out-dir dist/example"
+    "build": "babel packages --out-dir dist/packages",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.39",
-    "@babel/core": "^7.0.0-beta.39",
+    "@babel/core": "^7.0.0-beta.44",
     "@babel/node": "^7.0.0-beta.39",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.39",
     "@babel/plugin-proposal-decorators": "^7.0.0-beta.39",
@@ -21,13 +21,16 @@
     "@babel/preset-env": "^7.0.0-beta.39",
     "@babel/register": "^7.0.0-beta.39",
     "@babel/runtime": "^7.0.0-beta.39",
+    "babel-core": "^7.0.0-beta.39",
     "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.4.3",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.3"
   },
   "dependencies": {
     "ioredis": "^3.2.2",
@@ -38,6 +41,7 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.8.1",
     "koa-static": "^4.0.2",
+    "reflect-metadata": "^0.1.12",
     "validator": "^9.4.0"
   }
 }
