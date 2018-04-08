@@ -11,13 +11,18 @@ function createDefaultDescriptor (key) {
 }
 
 // Type
-export function DataType (dataType) {
+export function DataType (dataType, params, options) {
+  if (arguments.length === 2) {
+    options = params
+    params = undefined
+  }
   return function (object, propertyName) {
     setDecoratorContainer({
       target: object.constructor,
       propertyName,
       type: 'DataType',
-      constraints: [dataType]
+      constraints: [dataType, params],
+      options
     })
     return createDefaultDescriptor(propertyName)
   }

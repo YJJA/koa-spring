@@ -6,12 +6,16 @@ test('decorators test', () => {
     @NotEmpty({
       message: '不能为空'
     })
-    @DataType(Number)
-    name
+    @DataType(Date, {
+      default: '2012/10/10'
+    }, {
+      message: '日期格式不正确'
+    })
+    dateTitme
   }
 
   validate(Post, {
-    name: 'afafda'
+    name: 'afsdafada'
   }).then(data => {
     console.log(data)
   }).catch(err => {
