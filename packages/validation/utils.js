@@ -20,3 +20,12 @@ export function defaultGetter (key) {
     return descriptor ? descriptor.value : descriptor
   }
 }
+
+export function createDefaultDescriptor (key) {
+  return {
+    enumerable: true,
+    configurable: true,
+    get: defaultGetter(key),
+    set: defaultSetter(key)
+  }
+}

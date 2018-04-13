@@ -1,2 +1,2 @@
 export * from './decorators'
-export * from './Validator'
+export {default} from './validator'

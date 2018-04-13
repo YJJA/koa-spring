@@ -1,7 +1,7 @@
 import reflect from './reflect'
 import Metadata from './Metadata'
 
-const metadataKey = Symbol('validation')
+const metadataKey = Symbol('metadataKey')
 
 export function setDecoratorContainer (argv) {
   let Metadatas = null
