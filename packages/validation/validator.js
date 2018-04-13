@@ -4,7 +4,6 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
 // validator
 const validator = {
   validate (value, fun, ...argvs) {
-    console.log(fun)
     return fun(value, ...argvs)
   },
   isEmpty (value) {

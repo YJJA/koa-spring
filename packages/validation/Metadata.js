@@ -1,11 +1,3 @@
-/** @module metadata */
-
-/**
- * other options
- * @typedef {Object} Options
- * @property {string[]} groups - attribute group
- * @property {string} message - error message
- */
 
 /**
  * data validation metadata class
@@ -49,12 +41,6 @@ class Metadata {
 
   /**
    * create a metadata
-   * @param {Object} argv argv
-   * @param {Class} argv.target defined validate class
-   * @param {string} argv.propertyName defind validate class propertyName
-   * @param {string} argv.type validate method type
-   * @param {Array} argv.constraints validate method argvs
-   * @param {Options} argv.options other options
    */
   constructor (argv) {
     this.target = argv.target

@@ -1,2 +1,3 @@
 export * from './decorators'
-export {default} from './validator'
+export {default as validator} from './validator'
+export {default} from './validate'

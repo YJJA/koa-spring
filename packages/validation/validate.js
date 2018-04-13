@@ -9,17 +9,20 @@ function getPropertyName (meta, parent) {
   return meta.propertyName
 }
 
-function validatefly (validateMetas) {
-  return validateMetas.reduce((result, item) => {
-    if (!result[item.propertyName]) {
-      result[item.propertyName] = {}
+function validatefly (validateMetas, group) {
+  return validateMetas.reduce((result, meta) => {
+    if (!group || meta.always || (group && meta.groups && meta.groups.includes(group))) {
+      if (!result[meta.propertyName]) {
+        result[meta.propertyName] = {}
+      }
+      result[meta.propertyName][meta.type] = meta
     }
-    result[item.propertyName][item.type] = item
+
     return result
   }, {})
 }
 
-async function dataTypeTransformWithType (value, Type, meta, parent) {
+async function dataTypeTransformWithType (value, Type, meta, group, parent) {
   const propertyName = getPropertyName(meta, parent)
 
   // 数组类型
@@ -75,7 +78,7 @@ async function dataTypeTransformWithType (value, Type, meta, parent) {
 
     default:
       if (validator.isObject(value)) {
-        const result = await validate(Type, value, propertyName)
+        const result = await validate(Type, value, group, propertyName)
         return result
       } else {
         throw new Error(`${propertyName} must be a ${Type.name} instance`)
@@ -83,7 +86,7 @@ async function dataTypeTransformWithType (value, Type, meta, parent) {
   }
 }
 
-async function dataTypeTransform (value, meta, parent) {
+async function dataTypeTransform (value, meta, group, parent) {
   const [Type, params] = meta.constraints
 
   if (validator.isUndefined(value)) {
@@ -93,7 +96,7 @@ async function dataTypeTransform (value, meta, parent) {
       return value
     }
   }
-  const nextValue = await dataTypeTransformWithType(value, Type, meta, parent)
+  const nextValue = await dataTypeTransformWithType(value, Type, meta, group, parent)
   return nextValue
 }
 
@@ -116,14 +119,14 @@ function checkValidateIf (value, meta, data) {
   }
 }
 
-async function validate (validateClass, data, parent) {
+async function validate (validateClass, data, group, parent) {
   const validateMetas = getDecoratorContainer(validateClass)
-  const validateMetaMap = validatefly(validateMetas)
+  const validateMetaMap = validatefly(validateMetas, group)
 
   const result = {}
   for (let key in validateMetaMap) {
     const {DataType, ValidateIf, ...metas} = validateMetaMap[key]
-    const value = await dataTypeTransform(data[key], DataType, parent)
+    const value = await dataTypeTransform(data[key], DataType, group, parent)
 
     if (ValidateIf && checkValidateIf(value, ValidateIf, parent)) {
       for (let metaType in metas) {
