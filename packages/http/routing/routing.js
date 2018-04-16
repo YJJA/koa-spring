@@ -1,4 +1,5 @@
-import Reflect from '../validation/reflect'
+
+import Reflect from '../../shared/reflect'
 import Methods from './Methods'
 
 const routingKey = Symbol('routingKey')

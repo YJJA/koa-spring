@@ -2,7 +2,7 @@ import validatorJs from 'validator'
 const hasOwnProperty = Object.prototype.hasOwnProperty
 
 // validator
-const validator = {
+export const validator = {
   validate (value, fun, ...argvs) {
     return fun(value, ...argvs)
   },
@@ -243,5 +243,3 @@ const validator = {
     return this.isString(value) && validatorJs.matches(value, pattern)
   }
 }
-
-export default validator

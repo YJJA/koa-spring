@@ -119,7 +119,7 @@ function checkValidateIf (value, meta, data) {
   }
 }
 
-async function validate (validateClass, data, group, parent) {
+export async function validate (validateClass, data, group, parent) {
   const validateMetas = getDecoratorContainer(validateClass)
   const validateMetaMap = validatefly(validateMetas, group)
 
@@ -139,5 +139,3 @@ async function validate (validateClass, data, group, parent) {
 
   return result
 }
-
-export default validate
