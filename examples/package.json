@@ -1,0 +1,7 @@
+{
+  "name": "examples",
+  "private": true,
+  "dependencies": {
+    "@koaspring/routing": "0.0.1"
+  }
+}

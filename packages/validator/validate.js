@@ -128,7 +128,7 @@ export async function validate (validateClass, data, group, parent) {
     const {DataType, ValidateIf, ...metas} = validateMetaMap[key]
     const value = await dataTypeTransform(data[key], DataType, group, parent)
 
-    if (ValidateIf && checkValidateIf(value, ValidateIf, parent)) {
+    if (!ValidateIf || (ValidateIf && checkValidateIf(value, ValidateIf, parent))) {
       for (let metaType in metas) {
         validateValueByMetadata(value, metas[metaType], parent)
       }
