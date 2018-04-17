@@ -4,9 +4,7 @@ import http from 'http'
 
 import {DataType} from 'validator-decorators'
 
-import {routingMiddleware} from '../routingMiddleware'
-import {routing} from '../routing'
-import {Params} from '../params'
+import {routing, Params, routingMiddleware} from '../'
 
 test('http routingMiddleware', (done) => {
   const app = new Koa()
@@ -20,7 +18,7 @@ test('http routingMiddleware', (done) => {
   class UserController {
     @routing('')
     async find (ctx, next) {
-      ctx.body = {message: 'success1'}
+      ctx.body = {message: 'success'}
     }
 
     @Params(ParamsDto)
@@ -46,8 +44,8 @@ test('http routingMiddleware', (done) => {
   }))
 
   request(http.createServer(app.callback()))
-    .get('/users/123a')
-    .expect(400)
+    .get('/users/123')
+    .expect(200)
     .end((err, res) => {
       if (err) {
         console.log(err)

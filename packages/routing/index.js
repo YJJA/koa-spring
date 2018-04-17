@@ -1,5 +1,5 @@
 
 export {Methods} from './Methods'
-export {routing, getRoutingOptions, getRoutingPrefix} from './routing'
-
-export {Params, Body, Query, Headers, getParamsOptionsByProperty} from './params'
+export {routing} from './routing'
+export {Params, Body, Query, Headers} from './params'
+export {routingMiddleware} from './routingMiddleware'

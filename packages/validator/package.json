@@ -1,5 +1,5 @@
 {
-  "name": "validator-decorators",
+  "name": "@koaspring/validator",
   "version": "0.0.1",
   "dependencies": {
     "validator": "^9.4.1"

@@ -1,7 +1,7 @@
 {
-  "name": "http",
+  "name": "@koaspring/routing",
   "version": "0.0.1",
   "dependencies": {
-    "validator-decorators": "0.0.1"
+    "@koaspring/validator": "0.0.1"
   }
 }
