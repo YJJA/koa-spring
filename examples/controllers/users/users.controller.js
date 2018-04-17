@@ -1,11 +1,18 @@
-import {Routing, Methods, Params, Body} from '@koaspring/routing'
+import {Routing, Methods, Service, Params, Body} from '@koaspring/routing'
 import {UserBodyDto, UserParamsDto} from './users.dto'
+import {UsersService} from '../../services/users.service'
 
+@Service(UsersService)
 @Routing('/users')
 class Users {
+  constructor (usersService) {
+    this.usersService = usersService
+  }
+
   @Routing('')
   async find (ctx, next) {
-    ctx.body = {message: 'success'}
+    const list = await this.usersService.find()
+    ctx.body = list
   }
 
   @Params(UserParamsDto)
