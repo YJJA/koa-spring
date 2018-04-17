@@ -12,6 +12,7 @@ export function hasMetadata (metadataKey, target, property) {
     return false
   }
 
+  console.log('hasMetadata:', metadataKey, target, property)
   if (typeof property === 'string') {
     const propertyStore = metaStore.get(target)
     return propertyStore.has(property)

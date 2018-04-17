@@ -1,5 +1,5 @@
 import {getDecoratorContainer} from './container'
-import validator from './validator'
+import {validator} from './validator'
 import validatorMsg from './validatorMsg'
 
 function getPropertyName (meta, parent) {

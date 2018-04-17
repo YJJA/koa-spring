@@ -1,5 +1,5 @@
 import {DataType, IsNotEmpty, ValidateIf, Validate, IsLength} from '../decorators'
-import validate from '../validate'
+import {validate} from '../validate'
 
 test('decorators test', () => {
   class User {

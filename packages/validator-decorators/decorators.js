@@ -1,5 +1,5 @@
 import {setDecoratorContainer} from './container'
-import validator from './validator'
+import {validator} from './validator'
 
 function isOptions (obj) {
   return validator.isObject(obj) && (
