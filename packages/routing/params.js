@@ -5,15 +5,13 @@ const paramsKey = Symbol('paramsKey')
 function createParamsDecoratorsWithType (type) {
   return function (Dto, group) {
     return function (target, property) {
-      const option = {Dto, group, type}
-      const targetn = target.constructor
       let options = []
-      if (Reflect.hasMetadata(paramsKey, targetn, property)) {
-        options = Reflect.getMetadata(paramsKey, targetn, property)
+      if (Reflect.hasMetadata(paramsKey, target, property)) {
+        options = Reflect.getMetadata(paramsKey, target, property)
       }
-      options.push(option)
+      options.push({Dto, group, type})
 
-      Reflect.defineMetadata(paramsKey, options, targetn, property)
+      Reflect.defineMetadata(paramsKey, options, target, property)
     }
   }
 }

@@ -32,9 +32,9 @@ export function Routing (path, method = Methods.GET) {
       if (descriptor && typeof descriptor.value !== 'function') {
         throw new SyntaxError(`@routing can only be used on functions, not: ${descriptor.value}`)
       }
-      return routingMethod(target.constructor, {property, path, method})
+      return routingMethod(target, {property, path, method})
     } else {
-      return routingPrefix(target, path)
+      return routingPrefix(target.prototype, path)
     }
   }
 }

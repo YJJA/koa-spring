@@ -40,14 +40,12 @@ function pathJoin (...paths) {
 }
 
 // getRouterWithController
-export function getRoutesWithController (Controller) {
-  const prefix = getRoutingPrefix(Controller)
-  const routingOptions = getRoutingOptions(Controller)
-  const serviceInstances = getServiceInstances(Controller)
-  const control = new Controller(...serviceInstances)
+export function getRoutesWithController (control) {
+  const prefix = getRoutingPrefix(control)
+  const routingOptions = getRoutingOptions(control)
 
   return routingOptions.map(({path, method, property}) => {
-    const paramsOptions = getParamsOptionsByProperty(Controller, property)
+    const paramsOptions = getParamsOptionsByProperty(control, property)
     return {
       method,
       path: pathJoin(prefix, path),
@@ -68,10 +66,13 @@ export function getRoutesWithController (Controller) {
 }
 
 // routingMiddleware
-export function routingMiddleware ({controllers}) {
+export function routingMiddleware ({Controllers}) {
   const router = new Router()
-  controllers.map(Controller => {
-    const routes = getRoutesWithController(Controller)
+  Controllers.map(Controller => {
+    const serviceInstances = getServiceInstances(Controller)
+    const control = new Controller(...serviceInstances)
+    const routes = getRoutesWithController(control)
+
     routes.forEach(({method, path, handlers}) => {
       router[method](path, ...handlers)
     })
