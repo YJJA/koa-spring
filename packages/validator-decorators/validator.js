@@ -126,7 +126,7 @@ export const validator = {
     return Number(value)
   },
   isNumberString (value) {
-    return this.isString(value) && /^[-+]?[0-9]+(\.[0-9]+)$/.test(value)
+    return this.isString(value) && /^[-+]?[0-9]+(\.[0-9]+)?$/.test(value)
   },
   isInt (value) {
     return Number.isInteger(value)

@@ -35,5 +35,5 @@ export function getParamsOptions (target) {
 
 // getParamsOptionsByProperty
 export function getParamsOptionsByProperty (target, property) {
-  return Reflect.getMetadata(paramsKey, target, property)
+  return Reflect.getMetadata(paramsKey, target, property) || []
 }
