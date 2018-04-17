@@ -1,8 +1,14 @@
 import 'reflect-metadata'
-import {Methods} from './Methods'
 
 const routingKey = Symbol('routingKey')
 const prefixKey = Symbol('prefixKey')
+
+// Methods
+export const Methods = ['HEAD', 'OPTIONS', 'GET', 'PUT', 'PATCH', 'POST', 'DELETE']
+  .reduce((result, method) => {
+    result[method] = method.toLowerCase()
+    return result
+  }, {})
 
 // routingPrefix
 function routingPrefix (target, prefix) {

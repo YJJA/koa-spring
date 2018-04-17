@@ -1,10 +1,10 @@
-import {Routing, getRoutingOptions, getRoutingPrefix} from '../routing'
+import {Routing, Methods, getRoutingOptions, getRoutingPrefix} from '../routing'
 // import Methods from '../Methods'
 
 test('test routing', () => {
   @Routing('/list')
   class List {
-    @Routing('/abc')
+    @Routing('/abc', Methods.POST)
     find (ctx, next) {
       return 'abc'
     }
