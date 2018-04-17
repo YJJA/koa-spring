@@ -2,6 +2,7 @@
   "name": "@koaspring/routing",
   "version": "0.0.1",
   "dependencies": {
-    "@koaspring/validator": "0.0.1"
+    "@koaspring/validator": "0.0.1",
+    "reflect-metadata": "^0.1.12"
   }
 }

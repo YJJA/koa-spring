@@ -1,5 +1,4 @@
-
-import Reflect from '../shared/reflect'
+import 'reflect-metadata'
 
 const paramsKey = Symbol('paramsKey')
 
@@ -14,7 +13,7 @@ function createParamsDecoratorsWithType (type) {
       }
       options.push(option)
 
-      Reflect.setMetadata(paramsKey, options, targetn, property)
+      Reflect.defineMetadata(paramsKey, options, targetn, property)
     }
   }
 }

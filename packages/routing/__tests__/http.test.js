@@ -4,7 +4,7 @@ import http from 'http'
 
 import {DataType} from '@koaspring/validator'
 
-import {routing, Params, routingMiddleware} from '../'
+import {Routing, Params, routingMiddleware} from '../'
 
 test('http routingMiddleware', (done) => {
   const app = new Koa()
@@ -14,15 +14,15 @@ test('http routingMiddleware', (done) => {
     id
   }
 
-  @routing('/users')
+  @Routing('/users')
   class UserController {
-    @routing('')
+    @Routing('')
     async find (ctx, next) {
       ctx.body = {message: 'success'}
     }
 
     @Params(ParamsDto)
-    @routing('/:id')
+    @Routing('/:id')
     async findOne (ctx, next) {
       const {params} = ctx.dto
       ctx.body = params

@@ -1,5 +1,4 @@
-
-import Reflect from '../shared/reflect'
+import 'reflect-metadata'
 import {Methods} from './Methods'
 
 const routingKey = Symbol('routingKey')
@@ -7,7 +6,7 @@ const prefixKey = Symbol('prefixKey')
 
 // routingPrefix
 function routingPrefix (target, prefix) {
-  Reflect.setMetadata(prefixKey, prefix, target)
+  Reflect.defineMetadata(prefixKey, prefix, target)
 }
 
 // routingMethod
@@ -17,11 +16,11 @@ function routingMethod (target, options) {
     routes = Reflect.getMetadata(routingKey, target)
   }
   routes.push(options)
-  Reflect.setMetadata(routingKey, routes, target)
+  Reflect.defineMetadata(routingKey, routes, target)
 }
 
 // routing
-export function routing (path, method = Methods.GET) {
+export function Routing (path, method = Methods.GET) {
   return function (target, property, descriptor) {
     if (typeof property === 'string') {
       if (descriptor && typeof descriptor.value !== 'function') {

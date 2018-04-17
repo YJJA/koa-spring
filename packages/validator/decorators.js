@@ -1,43 +1,4 @@
-import {setDecoratorContainer} from './container'
-import {validator} from './validator'
-
-function isOptions (obj) {
-  return validator.isObject(obj) && (
-    validator.isDefined(obj.groups) ||
-    validator.isDefined(obj.message) ||
-    validator.isDefined(obj.always)
-  )
-}
-
-function getConstraintsAndOptions (args) {
-  if (!args.length) {
-    return {}
-  }
-  const last = args[args.length - 1]
-  let options = null
-  let constraints = args
-  if (isOptions(last)) {
-    options = last
-    constraints = args.splice(0, args.length - 1)
-  }
-
-  return {options, constraints}
-}
-
-function createDecorator (type) {
-  return function (...args) {
-    const constraintsAndOptions = getConstraintsAndOptions(args)
-
-    return function (object, propertyName) {
-      setDecoratorContainer({
-        target: object.constructor,
-        propertyName,
-        type,
-        ...constraintsAndOptions
-      })
-    }
-  }
-}
+import {createDecorator} from './container'
 
 // DataType
 export const DataType = createDecorator('DataType')

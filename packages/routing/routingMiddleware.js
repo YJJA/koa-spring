@@ -1,7 +1,8 @@
 import Router from 'koa-router'
+import {validate} from '@koaspring/validator'
+
 import {getRoutingOptions, getRoutingPrefix} from './routing'
 import {getParamsOptionsByProperty} from './params'
-import {validate} from '@koaspring/validator'
 
 // getParamsDataByType
 export function getParamsDataByType (type, ctx) {
