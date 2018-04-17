@@ -7,14 +7,14 @@ function createParamsDecoratorsWithType (type) {
   return function (Dto, group) {
     return function (target, property) {
       const option = {Dto, group, type}
+      const targetn = target.constructor
       let options = []
-      console.log(paramsKey, target, property)
-      if (Reflect.hasMetadata(paramsKey, target, property)) {
-        options = Reflect.getMetadata(paramsKey, target, property)
+      if (Reflect.hasMetadata(paramsKey, targetn, property)) {
+        options = Reflect.getMetadata(paramsKey, targetn, property)
       }
       options.push(option)
 
-      Reflect.setMetadata(paramsKey, options, target.constructor, property)
+      Reflect.setMetadata(paramsKey, options, targetn, property)
     }
   }
 }

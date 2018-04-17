@@ -12,7 +12,6 @@ export function hasMetadata (metadataKey, target, property) {
     return false
   }
 
-  console.log('hasMetadata:', metadataKey, target, property)
   if (typeof property === 'string') {
     const propertyStore = metaStore.get(target)
     return propertyStore.has(property)
@@ -32,8 +31,8 @@ export function setMetadata (metadataKey, metadataValue, target, property) {
 
   if (typeof property === 'string') {
     let propertyStore = null
-    if (metaStore.has(property)) {
-      propertyStore = metaStore.get(property)
+    if (metaStore.has(target)) {
+      propertyStore = metaStore.get(target)
     } else {
       propertyStore = new Map()
     }
