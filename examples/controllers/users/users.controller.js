@@ -1,4 +1,4 @@
-import {Routing, Methods, Service, Params, Body} from '@koaspring/routing'
+import {Routing, Methods, Service, Params, Body} from '@koaspring/spring'
 import {UserBodyDto, UserParamsDto} from './users.dto'
 import {UsersService} from '../../services/users.service'
 

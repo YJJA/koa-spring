@@ -1,5 +1,5 @@
 {
-  "name": "@koaspring/routing",
+  "name": "@koaspring/spring",
   "version": "0.0.1",
   "dependencies": {
     "@koaspring/validator": "0.0.1",

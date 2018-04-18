@@ -1,10 +1,10 @@
 # Koa-spring
 
-# 项目生命周期
-## 控制器实例化之前 controllerWillInstantiation
+## 项目生命周期
+### 控制器实例化之前 controllerWillMounted
 可对控制传入参数，如 server
 
-## 控制器实例化之后 controllerDidInstantiation
+### 控制器实例化之后 controllerDidMounted
 查找控制器中的路由，开始创建路由
 
 ## 访问生命周期
