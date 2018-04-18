@@ -1,9 +1,9 @@
-import {routingMiddleware} from '@koaspring/routing'
+import {springMiddleware} from '@koaspring/spring'
 
 import UsersController from './users'
 
 export default function () {
-  return routingMiddleware({
+  return springMiddleware({
     controllers: [UsersController]
   })
 }

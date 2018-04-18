@@ -1,17 +1,37 @@
 import 'reflect-metadata'
+import {validate} from '@koaspring/validator'
+import {setRoutingRequestBefore} from './controller'
 
-const paramsKey = Symbol('paramsKey')
+// getParamsDataByType
+function getParamsDataByType (type, ctx) {
+  switch (type) {
+    case 'body':
+      return ctx.request.body
+    case 'params':
+      return ctx.params
+    case 'query':
+      return ctx.request.query
+    case 'headers':
+      return ctx.request.headers
+    default:
+      return {}
+  }
+}
 
+// createParamsDecoratorsHandler
+function createParamsDecoratorsHandler (type, Dto, group) {
+  return async (ctx, next) => {
+    const data = getParamsDataByType(type, ctx)
+    ctx.state[type] = await validate(Dto, data, group)
+    await next()
+  }
+}
+
+// createParamsDecoratorsWithType
 function createParamsDecoratorsWithType (type) {
   return function (Dto, group) {
     return function (target, property) {
-      let options = []
-      if (Reflect.hasMetadata(paramsKey, target, property)) {
-        options = Reflect.getMetadata(paramsKey, target, property)
-      }
-      options.push({Dto, group, type})
-
-      Reflect.defineMetadata(paramsKey, options, target, property)
+      setRoutingRequestBefore(target, property, createParamsDecoratorsHandler(type, Dto, group))
     }
   }
 }
@@ -24,13 +44,3 @@ export const Params = createParamsDecoratorsWithType('params')
 export const Query = createParamsDecoratorsWithType('query')
 // Headers
 export const Headers = createParamsDecoratorsWithType('headers')
-
-// getParamsOptions
-export function getParamsOptions (target) {
-  return Reflect.getMetadata(paramsKey, target)
-}
-
-// getParamsOptionsByProperty
-export function getParamsOptionsByProperty (target, property) {
-  return Reflect.getMetadata(paramsKey, target, property) || []
-}

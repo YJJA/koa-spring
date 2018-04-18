@@ -11,7 +11,7 @@ export function Service (...Services) {
 
 // getServiceOptions
 export function getServiceOptions (target) {
-  return Reflect.getMetadata(serviceKey, target)
+  return Reflect.getMetadata(serviceKey, target) || []
 }
 
 // getServiceInstances
