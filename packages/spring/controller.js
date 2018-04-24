@@ -2,7 +2,6 @@ import 'reflect-metadata'
 
 const routingKey = Symbol('routingKey')
 const prefixKey = Symbol('prefixKey')
-const routeWillRequest = Symbol('routeWillRequest')
 
 // Methods
 export const Methods = ['HEAD', 'OPTIONS', 'GET', 'PUT', 'PATCH', 'POST', 'DELETE']
@@ -38,19 +37,4 @@ export function getRoutingOptions (target) {
 // getRoutingMethods
 export function getRoutingPrefix (target) {
   return Reflect.getMetadata(prefixKey, target)
-}
-
-// getRouterRequestBefore
-export function getRoutingRequestBefore (control, property) {
-  return Reflect.getMetadata(routeWillRequest, control, property) || []
-}
-
-// setRoutingRequestBefor
-export function setRoutingRequestBefore (target, property, handler) {
-  let handlers = []
-  if (Reflect.hasMetadata(routeWillRequest, target, property)) {
-    handlers = Reflect.getMetadata(routeWillRequest, target, property)
-  }
-  handlers.push(handler)
-  Reflect.defineMetadata(routeWillRequest, handlers, target, property)
 }

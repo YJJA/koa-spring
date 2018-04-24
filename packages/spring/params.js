@@ -1,46 +1,39 @@
 import 'reflect-metadata'
 import {validate} from '@koaspring/validator'
-import {setRoutingRequestBefore} from './controller'
+import {createRoutingMiddleware} from './controller'
 
-// getParamsDataByType
-function getParamsDataByType (type, ctx) {
-  switch (type) {
-    case 'body':
-      return ctx.request.body
-    case 'params':
-      return ctx.params
-    case 'query':
-      return ctx.request.query
-    case 'headers':
-      return ctx.request.headers
-    default:
-      return {}
-  }
-}
-
-// createParamsDecoratorsHandler
-function createParamsDecoratorsHandler (type, Dto, group) {
+// Body
+export const Body = createRoutingMiddleware((Dto, group) => {
   return async (ctx, next) => {
-    const data = getParamsDataByType(type, ctx)
-    ctx.state[type] = await validate(Dto, data, group)
+    const data = ctx.request.body
+    ctx.state.body = await validate(Dto, data, group)
     await next()
   }
-}
+})
 
-// createParamsDecoratorsWithType
-function createParamsDecoratorsWithType (type) {
-  return function (Dto, group) {
-    return function (target, property) {
-      setRoutingRequestBefore(target, property, createParamsDecoratorsHandler(type, Dto, group))
-    }
-  }
-}
-
-// body
-export const Body = createParamsDecoratorsWithType('body')
 // Params
-export const Params = createParamsDecoratorsWithType('params')
+export const Params = createRoutingMiddleware((Dto, group) => {
+  return async (ctx, next) => {
+    const data = ctx.params
+    ctx.state.params = await validate(Dto, data, group)
+    await next()
+  }
+})
+
 // Query
-export const Query = createParamsDecoratorsWithType('query')
+export const Query = createRoutingMiddleware((Dto, group) => {
+  return async (ctx, next) => {
+    const data = ctx.request.query
+    ctx.state.query = await validate(Dto, data, group)
+    await next()
+  }
+})
+
 // Headers
-export const Headers = createParamsDecoratorsWithType('headers')
+export const Headers = createRoutingMiddleware((Dto, group) => {
+  return async (ctx, next) => {
+    const data = ctx.request.headers
+    ctx.state.headers = await validate(Dto, data, group)
+    await next()
+  }
+})

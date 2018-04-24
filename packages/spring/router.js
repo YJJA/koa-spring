@@ -1,5 +1,6 @@
 import 'reflect-metadata'
-import {getRoutingOptions, getRoutingPrefix, getRoutingRequestBefore} from './controller'
+import {getRoutingOptions, getRoutingPrefix} from './controller'
+import {getRoutingMiddlewares} from './middleware'
 
 // pathJoin
 function pathJoin (...paths) {
@@ -25,7 +26,7 @@ export function getRoutesWithController (control) {
       method,
       path: pathJoin(prefix, path),
       handlers: [
-        ...getRoutingRequestBefore(control, property),
+        ...getRoutingMiddlewares(control, property),
         control[property].bind(control)
       ]
     }
