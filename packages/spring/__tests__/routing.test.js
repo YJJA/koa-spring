@@ -1,8 +1,8 @@
-import {Routing, Methods, getRoutingOptions, getRoutingPrefix} from '../routing'
+import {Controller, Routing, Methods, getRoutingOptions, getRoutingPrefix} from '../controller'
 // import Methods from '../Methods'
 
 test('test routing', () => {
-  @Routing('/list')
+  @Controller('/list')
   class List {
     @Routing('/abc', Methods.POST)
     find (ctx, next) {
@@ -10,8 +10,9 @@ test('test routing', () => {
     }
   }
 
-  const a = getRoutingOptions(List)
-  const b = getRoutingPrefix(List)
+  const list = new List()
+  const a = getRoutingOptions(list)
+  const b = getRoutingPrefix(list)
   console.log(a)
   console.log(b)
 })

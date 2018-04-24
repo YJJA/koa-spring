@@ -1,4 +1,5 @@
-import {Body, Params, Query, Headers, getParamsOptionsByProperty} from '../params'
+import {Body, Params, Query, Headers} from '../params'
+import {getRoutingMiddlewares} from '../middleware'
 
 class AbcDto {}
 
@@ -13,6 +14,7 @@ test('test routing', () => {
     }
   }
 
-  const result = getParamsOptionsByProperty(List, 'find')
+  const list = new List()
+  const result = getRoutingMiddlewares(list, 'find')
   console.log(result)
 })

@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import {validate} from '@koaspring/validator'
-import {createRoutingMiddleware} from './controller'
+import {createRoutingMiddleware} from './middleware'
 
 // Body
 export const Body = createRoutingMiddleware((Dto, group) => {
